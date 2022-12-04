@@ -1,7 +1,8 @@
-import 'dart:ffi';
 
+import 'package:google_fonts/google_fonts.dart';
 import 'package:consistency_app/data/database.dart';
 import 'package:consistency_app/tile.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 //import 'homescreen.dart',
@@ -61,17 +62,23 @@ class _ToDoState extends State<ToDo> {
     showDialog(context: context, builder: (context)
     {
       return AlertDialog(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[900],
         actions: [
           MaterialButton(
             onPressed:() => edited(index),
             child: Text(
-                "Save"
+                "Save",
+              style: TextStyle(
+                color: Colors.yellow[200],
+              ),
             ),
           ),
           MaterialButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Icon(Icons.delete),
+            child: Icon(
+                Icons.delete,
+              color: Colors.yellow[200],
+            ),
           ),
         ],
 
@@ -81,8 +88,12 @@ class _ToDoState extends State<ToDo> {
             children: [
               TextField(
                 controller: control,
+                cursorColor: Colors.yellow[200],
                 decoration: InputDecoration(
                   hintText: "Edit task",
+                  hintStyle: TextStyle(
+                    color: Colors.yellow[200],
+                  ),
                 ),
               ),
             ],
@@ -94,17 +105,23 @@ class _ToDoState extends State<ToDo> {
   void newtask(){
     showDialog(context: context, builder: (context){
       return AlertDialog(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[900],
         actions: [
           MaterialButton(
             onPressed: savetask,
             child: Text(
-                "Save"
+                "Save",
+                style: TextStyle(
+                  color: Colors.yellow[200],
+                ),
             ),
           ),
           MaterialButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Icon(Icons.delete),
+            child: Icon(
+                Icons.delete,
+              color: Colors.yellow[200],
+            ),
           ),
         ],
 
@@ -116,6 +133,9 @@ class _ToDoState extends State<ToDo> {
                 controller: control,
                 decoration: InputDecoration(
                   hintText: "Create new task",
+                  hintStyle: TextStyle(
+                    color: Colors.yellow[200],
+                  ),
                 ),
               ),
             ],
@@ -127,8 +147,9 @@ class _ToDoState extends State<ToDo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.grey[900],
       appBar:
         AppBar(
           backgroundColor: Colors.transparent,
@@ -136,12 +157,14 @@ class _ToDoState extends State<ToDo> {
           toolbarHeight: 100,
           title:Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Text(
-                "Your Tasks",
-              style:TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Colors.grey[100],
+            child: Center(
+              child: Text(
+                  "T O   D O",
+                style:GoogleFonts.amiko(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.grey[900],
+                ),
               ),
             ),
           ),
@@ -154,32 +177,28 @@ class _ToDoState extends State<ToDo> {
                 spreadRadius: 5.0,
               ),],
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-              gradient: const LinearGradient(
-                  colors: [Color(0xFFEF9A9A),Color(0xFFFFE082)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-              ),
+              color: Colors.yellow[300],
             ),
           ),
         ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: newtask,
-        child: Icon(Icons.add),
-        backgroundColor: Colors.grey[200],
-        foregroundColor: Colors.black,
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Colors.yellow.shade200,
+        backgroundColor: Colors.transparent,
+        animationDuration: Duration(milliseconds: 350),
+        onTap: (index){
+          if(index==1){
+            newtask();
+          }
+        },
+        items: [
+        Icon(Icons.home),
+        Icon(Icons.add),
+        Icon(Icons.calendar_month),
+      ],
       ),
       body: Column(
         children: [
-          Container(
-            child: Text(
-              "Your Tasks",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-            ),
-          ),
+
           SizedBox(height: 20),
           Expanded(
             child: ListView.builder(

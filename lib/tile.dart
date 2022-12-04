@@ -28,6 +28,7 @@ class Tile extends StatelessWidget {
                 icon: Icons.edit,
                 borderRadius: BorderRadius.circular(15.0),
 
+
               ),
               SlidableAction(
                 onPressed: delete,
@@ -43,28 +44,32 @@ class Tile extends StatelessWidget {
           child: Row(
             children: [
               Checkbox(
-                  checkColor: Colors.purple[200],
-                  activeColor: Colors.black,
+                  checkColor: Colors.yellow[200],
+                  activeColor: Colors.grey[800],
                   value: finished,
                   onChanged: onChanged,
               ),
               Text(name,
-              style: TextStyle(decoration: finished? TextDecoration.lineThrough:TextDecoration.none)),
+              style: TextStyle(
+                  decoration: finished? TextDecoration.lineThrough:TextDecoration.none,
+                color: Colors.yellow[200],
+              ),
+              ),
             ],
           ),
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: Colors.grey[900],
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.shade500,
+                color: Colors.black,
                 offset: Offset(5,5),
                 blurRadius: 15,
                 spreadRadius: 1,
               ),
               BoxShadow(
-                color: Colors.white,
-                offset: Offset(-5,-5),
+                color: Colors.grey.shade800,
+                offset: Offset(-4,-4),
                 blurRadius: 15,
                 spreadRadius: 1,
               ),

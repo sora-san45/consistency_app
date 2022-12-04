@@ -58,3 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+floatingActionButton: FloatingActionButton(
+onPressed: newtask,
+child: Icon(Icons.add),
+backgroundColor: Colors.grey[200],
+foregroundColor: Colors.black,
+),
+
+
+gradient: const LinearGradient(
+colors: [Color(0xFFEF9A9A),Color(0xFFFFE082)],
+begin: Alignment.topLeft,
+end: Alignment.bottomRight,
+),
