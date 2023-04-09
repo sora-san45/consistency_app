@@ -22,3 +22,4 @@ samples, guidance on mobile development, and a full API reference.
 - Swipe right on tasks to view edit and delete options for each task
 
 ## HeatMap
+-Tracks consistency in completing tasks 
